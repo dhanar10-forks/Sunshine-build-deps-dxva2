@@ -1,3 +1,56 @@
+# Sunshine-build-deps-dxva2
+
+A fork of the pre-compiled dependencies for [LizardByte/Sunshine](https://github.com/LizardByte/Sunshine) with FFmpeg built using DXVA2 hardware acceleration support.
+
+
+```bash
+# Run this in the MSYS2 UCRT64 shell
+
+# Install dependencies
+
+pacman -Syu
+pacman -S \
+    diffutils \
+    git \
+    make \
+    patch \ 
+    pkg-config \
+    mingw-w64-ucrt-x86_64-binutils \
+    mingw-w64-ucrt-x86_64-cmake \
+    mingw-w64-ucrt-x86_64-gcc \
+    mingw-w64-ucrt-x86_64-make \
+    mingw-w64-ucrt-x86_64-nasm \
+    mingw-w64-ucrt-x86_64-ninja \
+    mingw-w64-ucrt-x86_64-onevpl
+
+# Clone repo and init submodules
+
+git clone https://github.com/dhanar10-forks/Sunshine-build-deps-dxva2.git
+cd Sunshine-build-deps-dxva2
+git submodule update --init --recursive
+
+# Configure build (FFmpeg only)
+
+mkdir -p ./build/dist
+cmake \
+    -B ./build \
+    -S . \
+    -G "MSYS Makefiles" \
+    -DCMAKE_INSTALL_PREFIX=./build/dist \
+    -DBUILD_FFMPEG=ON \
+    -DBUILD_ALL=OFF \
+    -DBUILD_ALL_LIBDISPLAYDEVICE=OFF \
+    -DBUILD_ALL_SUNSHINE=OFF \
+    -DBUILD_BOOST=OFF 
+
+# Build and install
+
+make -C build
+make -C build install
+
+# Output: ./build/dist
+```
+
 # build-deps
 
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/lizardbyte/build-deps/ci.yml.svg?branch=master&label=build&logo=github&style=for-the-badge)](https://github.com/LizardByte/build-deps/actions/workflows/ci.yml?query=branch%3Amaster)
