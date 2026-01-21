@@ -1,4 +1,4 @@
-prefix=D:/a/build-deps/build-deps/build/dist
+prefix=Z:/Git/Sunshine-build-deps-dxva2/build/dist
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
