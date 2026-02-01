@@ -9,29 +9,21 @@ A fork of the pre-compiled dependencies for [LizardByte/Sunshine](https://github
 # Install dependencies
 
 pacman -Syu
-pacman -S \
-    diffutils \
-    git \
-    make \
-    patch \ 
-    pkg-config \
-    mingw-w64-ucrt-x86_64-binutils \
-    mingw-w64-ucrt-x86_64-cmake \
-    mingw-w64-ucrt-x86_64-gcc \
-    mingw-w64-ucrt-x86_64-make \
-    mingw-w64-ucrt-x86_64-nasm \
-    mingw-w64-ucrt-x86_64-ninja \
-    mingw-w64-ucrt-x86_64-onevpl
+
+pacman -S diffutils git make patch pkg-config mingw-w64-ucrt-x86_64-binutils mingw-w64-ucrt-x86_64-cmake mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-make mingw-w64-ucrt-x86_64-nasm mingw-w64-ucrt-x86_64-ninja mingw-w64-ucrt-x86_64-onevpl
 
 # Clone repo and init submodules
 
 git clone https://github.com/dhanar10-forks/Sunshine-build-deps-dxva2.git
+
 cd Sunshine-build-deps-dxva2
+
 git submodule update --init --recursive
 
 # Configure build (FFmpeg only)
 
 mkdir -p ./build/dist
+
 cmake \
     -B ./build \
     -S . \
@@ -46,6 +38,7 @@ cmake \
 # Build and install
 
 make -C build
+
 make -C build install
 
 # Output: ./build/dist
